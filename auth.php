@@ -251,6 +251,7 @@ class auth_plugin_casattras extends auth_plugin_base {
         foreach ($this->userfields as $field) {
             $casfield = $this->config->{"field_map_$field"};
 	    if (!empty($casfield) && !empty($casattras[$casfield])) {
+		// There can be multiple emails stored in LDAP. Use the first one.
 		if('email' === $field && is_array($casattras[$casfield])){
 			$casattras[$casfield] = array_shift($casattras[$casfield]);
 		}
